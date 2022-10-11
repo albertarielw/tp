@@ -2,14 +2,14 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,13 +23,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.EditCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDeadline;
-import seedu.address.model.task.TaskCategory;
-import seedu.address.model.task.TaskName;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
 
+/**
+ * Adds a Task in the address book.
+ */
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "editTask";
 

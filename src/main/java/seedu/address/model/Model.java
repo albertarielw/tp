@@ -69,9 +69,6 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
-    /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
-     */
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -80,7 +77,9 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     */
     boolean hasTask(Task task);
 
     /**

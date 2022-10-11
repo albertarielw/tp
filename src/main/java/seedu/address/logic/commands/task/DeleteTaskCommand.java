@@ -13,6 +13,9 @@ import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Deletes a Task in the address book.
+ */
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "deleteTask";
     public static final String MESSAGE_USAGE = COMMAND_WORD
