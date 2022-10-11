@@ -2,7 +2,6 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -10,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -171,7 +171,9 @@ public class EditTaskCommand extends Command {
             this.name = name;
         }
 
-        public Optional<TaskName> getName() { return Optional.ofNullable(name); }
+        public Optional<TaskName> getName() {
+            return Optional.ofNullable(name);
+        }
 
         public void setCategory(TaskCategory category) {
             this.category = category;
@@ -197,7 +199,9 @@ public class EditTaskCommand extends Command {
             return ofNullable(priority);
         }
 
-        public void setDeadline(TaskDeadline deadline) { this.deadline = deadline; }
+        public void setDeadline(TaskDeadline deadline) {
+            this.deadline = deadline;
+        }
 
         public Optional<TaskDeadline> getDeadline() {
             return ofNullable(deadline);
