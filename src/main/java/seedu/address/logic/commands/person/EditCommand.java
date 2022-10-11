@@ -127,7 +127,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        public Name name;
+        private Name name;
         private Phone phone;
         private Email email;
         private Address address;

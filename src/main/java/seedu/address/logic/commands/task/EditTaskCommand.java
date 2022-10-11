@@ -1,25 +1,34 @@
 package seedu.address.logic.commands.task;
 
-import jdk.jfr.Category;
+import static java.util.Objects.requireNonNull;
+import static java.util.Optional.ofNullable;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.commands.person.EditCommand;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static java.util.Optional.ofNullable;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "editTask";
@@ -47,8 +56,8 @@ public class EditTaskCommand extends Command {
     private final EditTaskCommand.EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editTaskDescriptor details to edit the person with
+     * @param index of the task in the filtered task list to edit
+     * @param editTaskDescriptor details to edit the task with
      */
     public EditTaskCommand(Index index, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
@@ -94,7 +103,8 @@ public class EditTaskCommand extends Command {
         Person updatedPerson = editTaskDescriptor.getPerson().orElse(taskToEdit.getPerson());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
-        return new Task(updatedName, updatedCategory, updatedDescription, updatedPriority, updatedDeadline, updatedPerson, updatedIsDone);
+        return new Task(updatedName, updatedCategory, updatedDescription, updatedPriority,
+                updatedDeadline, updatedPerson, updatedIsDone);
     }
 
     @Override

@@ -1,5 +1,9 @@
 package seedu.address.logic.commands.task;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -9,13 +13,8 @@ import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "deleteTask";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -25,6 +24,9 @@ public class DeleteTaskCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteTaskCommand to add the specified {@code Task}
+     */
     public DeleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
