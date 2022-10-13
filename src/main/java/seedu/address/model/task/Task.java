@@ -12,6 +12,9 @@ import seedu.address.model.person.Person;
  */
 public class Task {
 
+    private static final String IS_DONE = "true";
+    private static final String IS_NOT_DONE = "false";
+
     // Identity fields
     private TaskName name;
     private TaskCategory category;
@@ -32,7 +35,7 @@ public class Task {
      * @param priority Priority of task
      * @param deadline Deadline of task
      * @param person   Person assigned to task
-     * @param status   status of task
+     * @param status   status of task in boolean form
      */
     public Task(TaskName name, Description desc, Priority priority, TaskCategory category,
                 TaskDeadline deadline, Person person, boolean status) {
@@ -44,6 +47,49 @@ public class Task {
         this.deadline = deadline;
         this.person = person;
         isDone = status;
+    }
+
+    /**
+     * Constructor method to instantiate a Task object. Every field must be present and not null.
+     *
+     * @param name     Name of task
+     * @param category Category of task
+     * @param desc     Description of task
+     * @param priority Priority of task
+     * @param deadline Deadline of task
+     * @param person   Person assigned to task
+     * @param status   status of task in string form
+     */
+    public Task(TaskName name, Description desc, Priority priority, TaskCategory category,
+                TaskDeadline deadline, Person person, String status) {
+        requireAllNonNull(name, category, desc, priority, deadline, status);
+        this.name = name;
+        this.category = category;
+        description = desc;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.person = person;
+        this.isDone = convertIsDoneFromStringToBoolean(status);
+    }
+
+    /**
+     * Converts status from its String form to its boolean form
+     *
+     * @param isDone status in String form
+     * @return status in boolean form
+     */
+    public static boolean convertIsDoneFromStringToBoolean(String isDone) {
+        return isDone == IS_DONE;
+    }
+
+    /**
+     * Converts status from its boolean form to its String form
+     *
+     * @param isDone status in boolean form
+     * @return status in String form
+     */
+    public static String convertIsDoneFromBooleanToString(boolean isDone) {
+        return (isDone) ? IS_DONE : IS_NOT_DONE;
     }
 
     /**
@@ -186,6 +232,8 @@ public class Task {
 
         return otherTask != null && otherTask.getName().equals(getName());
     }
+
+
 
     /**
      * Returns true if both tasks have the same fields.

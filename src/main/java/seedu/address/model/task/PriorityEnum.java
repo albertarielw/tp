@@ -36,4 +36,14 @@ public enum PriorityEnum {
                 .filter(priority -> priority.name.equals(priorityName))
                 .findFirst();
     }
+
+    /**
+     * Returns true if priority is valid.
+     *
+     * @param test String to test.
+     * @return Whether the string is a valid priority.
+     */
+    public static boolean isValidPriority(String test) {
+        return getFromString(test).isPresent();
+    }
 }

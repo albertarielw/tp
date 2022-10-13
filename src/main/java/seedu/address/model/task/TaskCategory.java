@@ -1,13 +1,16 @@
 package seedu.address.model.task;
 
 
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * Represents the category of a task.
  */
 public class TaskCategory {
     public static final String MESSAGE_CONSTRAINTS =
-            "Category must be one of the following: " + TaskCategoryType.getValidTaskCategories();
-
+            "Category must be one of the following: " + TaskCategoryType.getValidTaskCategories()
+            + " and level must be non-negative integer";
     private final int level;
     private final TaskCategoryType taskCategoryType;
 
@@ -57,6 +60,50 @@ public class TaskCategory {
     @Override
     public String toString() {
         return taskCategoryType.name();
+    }
+
+    /**
+     * Returns true if task category level is valid.
+     *
+     * @param test int to test.
+     * @return Whether the int is a valid task category level.
+     */
+    public static boolean isValidLevel(int test) {
+        return test >= 0;
+    }
+
+    /**
+     * Returns true if taskCategoryName is valid.
+     *
+     * @param taskCategoryName String to test.
+     * @return Whether the string is a valid taskCategoryName.
+     */
+    public static boolean isValidTaskCategoryName(String taskCategoryName) {
+        return getFromString(taskCategoryName).isPresent();
+    }
+
+    /**
+     * Returns true if it is a valid task category is valid.
+     *
+     * @param taskCategoryName String to test.
+     * @param level int to test
+     * @return Whether the task category is a valid.
+     */
+    public static boolean isValidTaskCategory(int level, String taskCategoryName) {
+        return isValidLevel(level) && isValidTaskCategoryName(taskCategoryName);
+    }
+
+    /**
+     * Looks up a {@code enum TaskCategoryType} from a given string.
+     *
+     * @param taskCategoryName string to test.
+     * @return Empty if {@code taskCategoryName} is not a valid TaskCategoryType,
+     * else the corresponding {@code PriorityEnum}.
+     */
+    public static Optional<TaskCategoryType> getFromString(String taskCategoryName) {
+        return Arrays.stream(TaskCategoryType.values())
+                .filter(taskCategoryType -> taskCategoryType.name().equals(taskCategoryName))
+                .findFirst();
     }
 
     /**
