@@ -2,17 +2,22 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.PriorityEnum;
+
+/**
+ * Jackson-friendly version of {@link Task}.
+ */
 public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
     private final String taskName;
@@ -63,10 +68,11 @@ public class JsonAdaptedTask {
      */
     public Task toModelType() throws IllegalValueException {
         if (taskName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskName.class.getSimpleName()));
         }
-        if (!Name.isValidName(taskName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidTaskName(taskName)) {
+            throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
         final TaskName modelName = new TaskName(taskName);
 
@@ -93,7 +99,7 @@ public class JsonAdaptedTask {
                     Priority.class.getSimpleName()));
         }
         if (!PriorityEnum.isValidPriority(priority)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
         final Priority modelPriority = new Priority(PriorityEnum.getFromString(priority).get());
 

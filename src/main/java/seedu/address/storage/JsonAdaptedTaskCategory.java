@@ -3,10 +3,14 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskCategoryType;
 
+/**
+ * Jackson-friendly version of {@link TaskCategory}.
+ */
 public class JsonAdaptedTaskCategory {
     private final int level;
 
@@ -35,7 +39,9 @@ public class JsonAdaptedTaskCategory {
     }
 
     @JsonValue
-    public String getTaskCategoryType() { return taskCategoryType;}
+    public String getTaskCategoryType() {
+        return taskCategoryType;
+    }
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code TaskCategory} object.

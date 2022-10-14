@@ -97,8 +97,7 @@ public class TaskCategory {
      * Looks up a {@code enum TaskCategoryType} from a given string.
      *
      * @param taskCategoryName string to test.
-     * @return Empty if {@code taskCategoryName} is not a valid TaskCategoryType,
-     * else the corresponding {@code PriorityEnum}.
+     * @return Empty if {@code taskCategoryName} is not a valid else the corresponding {@code PriorityEnum}.
      */
     public static Optional<TaskCategoryType> getFromString(String taskCategoryName) {
         return Arrays.stream(TaskCategoryType.values())
